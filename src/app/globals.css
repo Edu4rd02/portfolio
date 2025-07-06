@@ -1,26 +1,38 @@
 @import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+
+@property --border-angle{
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 0deg;
+}
+
+@theme{
+    @keyframes border-run {
+        0% {
+            --border-angle: 0deg;
+        }
+        100% {
+            --border-angle: 360deg;
+        }
+    }
+}
+
+/* Alternative animated border implementation */
+.animate-border-run {
+  animation: border-run 4s linear infinite;
 }
